@@ -1,4 +1,4 @@
-class newrelic::php::install ($license_key = '6026ea41b096c689e677fecae4f276bebcff01c0') {
+class newrelic::php::install ($license_key) {
     require newrelic::repo
     
     package { 'newrelic-php5':
