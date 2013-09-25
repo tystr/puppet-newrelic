@@ -1,0 +1,3 @@
+class newrelic::php::configure {
+
+}
