@@ -2,7 +2,7 @@ class newrelic::php::install ($license_key) {
     require newrelic::repo
     
     package { 'newrelic-php5':
-        ensure => installed
+        ensure => latest
     }
 
     exec { 'newrelic-install':
