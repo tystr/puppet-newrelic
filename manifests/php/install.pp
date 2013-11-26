@@ -11,6 +11,6 @@ class newrelic::php::install ($license_key) {
         path => ['/bin', '/usr/bin'],
         require => Package['newrelic-php5'],
         notify => Service['php-fpm'],
-        unless => 'test -f /etc/init.d/newrelic-daemon'
+        #unless => 'test -f /etc/init.d/newrelic-daemon'
     }
 }
