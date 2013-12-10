@@ -1,8 +1,7 @@
 class newrelic::server ($license_key) {
-    class { 'newrelic::server::install': } ->
-    class { 'newrelic::server::configure': 
+    class{ 'newrelic::server::install':
         license_key => $license_key
-    } ~>
+    } ->
     class { 'newrelic::server::service': } ->
     Class['newrelic::server']
 }
