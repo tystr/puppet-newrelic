@@ -36,3 +36,9 @@ Support
 -------
 
 Please log tickets and issues at our [Projects site](http://github.com/puppet-newrelic.git)
+
+Running the Tests
+-----------------
+To run the rspec-puppet tests:
+
+`rake spec`
