@@ -1,5 +1,7 @@
 Newrelic Puppet Module
 ======================
+[![Build Status](https://travis-ci.org/tystr/puppet-newrelic.png?branch=master)](https://travis-ci.org/tystr/puppet-newrelic)
+
 This module manages installation and configuration of newrelic server monitoring daemon and application monitoring
 agents.
 
