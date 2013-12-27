@@ -35,7 +35,7 @@ Tyler Stroud <tyler@tylerstroud.com>
 Support
 -------
 
-Please log tickets and issues at our [Projects site](http://github.com/puppet-newrelic.git)
+Please log tickets and issues at our [Projects site](https://github.com/tystr/puppet-newrelic/issues)
 
 Running the Tests
 -----------------
