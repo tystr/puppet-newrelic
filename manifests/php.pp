@@ -1,8 +1,12 @@
-class newrelic::php ($license_key) {
-    require newrelic::repo
+class newrelic::php (
+    $license_key,
+    $php_service = $newrelic::php::params::php_service
+) inherits newrelic::php::params {
+    include newrelic::repo
 
     package { 'newrelic-php5':
         ensure => latest,
+        require => Class['newrelic::repo'],
         notify => Exec['newrelic-install']
     }
     exec { 'newrelic-install':
@@ -10,7 +14,10 @@ class newrelic::php ($license_key) {
         command => "newrelic-install install",
         path => ['/bin', '/usr/bin'],
         require => Package['newrelic-php5'],
-        refreshonly => true,
-        notify => Service['php-fpm']
+        refreshonly => true
+    }
+
+    if ($php_service != undef) {
+        Exec['newrelic-install'] ~> Service[$php_service]
     }
 }
