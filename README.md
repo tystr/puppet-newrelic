@@ -17,13 +17,33 @@ class { 'newrelic::server':
 
 ### Install application monitoring agents
 
-Note: Currently only the php agent is supported
+Currently the following application monitoring agents are supported:
 
+- [PHP] (#php)
+
+#### PHP
+Basic installation:
 ```puppet
 class { 'newrelic::php':
     license_key => 'your_license_key',
 }
 ```
+
+If you need to customize the installation process, you can pass parameters to the class:
+```puppet
+class { 'newrelic::php':
+    license_key => 'your_license_key',
+    install_noksh => 1,
+    install_shell => 'bash',
+    install_path => 'path1:path2',
+    install_phplist => 'dir1:dir2',
+    install_arch => 'x86',
+    install_initscript => 'initscript-name',
+    install_daemonpath => '/usr/bin/newrelic-daemon',
+    install_use_cp_not_ln => 'startup-daemon'
+}
+```
+See [Newrelic's documentation](https://docs.newrelic.com/docs/php/running-the-install-script-in-silent-mode#install-environment) for more information about these options.
 
 License
 -------
