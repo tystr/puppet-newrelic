@@ -1,5 +1,5 @@
 name    'tystr-newrelic'
-version '0.1.0'
+version '0.1.1'
 source 'git@github.com:tystr/puppet-newrelic.git'
 author 'Tyler Stroud <tyler@tylerstroud.com>'
 license 'MIT'
