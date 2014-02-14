@@ -1,5 +1,6 @@
 class newrelic::php::params {
    $php_service = undef
+   $ensure = latest
    $install_noksh = undef
    $install_shell = undef
    $install_path = undef

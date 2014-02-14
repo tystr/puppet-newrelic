@@ -53,4 +53,18 @@ describe 'newrelic::php', :type => :class do
           :refreshonly => true
       )}
     end
+
+    context "with ensure => absent" do
+      let(:params) { {
+        :license_key => '7ac66c0f148de9519b8bd264312c4d64',
+        :ensure => 'absent'
+      } }
+
+      it { should contain_package('newrelic-php5').with(
+        :ensure => 'absent'
+      ) }
+      it { should contain_exec('newrelic-install').with(
+        :command => 'newrelic-install purge'
+      ) }
+    end
 end

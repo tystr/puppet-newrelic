@@ -1,5 +1,6 @@
 class newrelic::php (
     $license_key,
+    $ensure = $newrelic::php::params::ensure,
     $php_service = $newrelic::php::params::php_service,
     $install_noksh = $newrelic::php::params::noksh,
     $install_shell = $newrelic::php::params::install_shell,
@@ -13,7 +14,7 @@ class newrelic::php (
     include newrelic::repo
 
     package { 'newrelic-php5':
-        ensure => latest,
+        ensure => $ensure,
         require => Class['newrelic::repo'],
         notify => Exec['newrelic-install']
     }
@@ -65,9 +66,10 @@ class newrelic::php (
     ]
     $env = delete($env_temp, nil)
 
+    $install_option = $ensure ? { absent => 'purge', default => 'install' }
     exec { 'newrelic-install':
         environment => $env,
-        command => "newrelic-install install",
+        command => "newrelic-install ${install_option}",
         path => ['/bin', '/usr/bin'],
         require => Package['newrelic-php5'],
         refreshonly => true
