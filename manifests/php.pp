@@ -24,7 +24,7 @@ class newrelic::php (
       Package['newrelic-php5'] -> Exec['newrelic-install']
 
       if ($php_service) {
-        Package['newrelic-install'] ~> Service[$php_service]
+        Exec['newrelic-install'] ~> Service[$php_service]
       }
     }
 
