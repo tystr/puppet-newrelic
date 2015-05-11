@@ -17,14 +17,14 @@ class newrelic::php (
       Exec['newrelic-install'] -> Package['newrelic-php5']
 
       if ($php_service) {
-        Package['newrelic-php5'] ~> Service['$php_service']
+        Package['newrelic-php5'] ~> Service[$php_service]
       }
     }
     else {
       Package['newrelic-php5'] -> Exec['newrelic-install']
 
       if ($php_service) {
-        Package['newrelic-install'] ~> Service['$php_service']
+        Package['newrelic-install'] ~> Service[$php_service]
       }
     }
 
