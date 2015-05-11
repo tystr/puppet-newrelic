@@ -13,7 +13,7 @@ class newrelic::php (
 ) inherits newrelic::php::params {
     include newrelic::repo
 
-    if ($ensure = 'absent') {
+    if ($ensure == 'absent') {
       Exec['newrelic-install'] -> Package['newrelic-php5']
     }
     else {
