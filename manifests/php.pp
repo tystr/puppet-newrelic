@@ -16,7 +16,7 @@ class newrelic::php (
     $execrefreshonly = true
 
     if ($ensure == absent) {
-      $execrefreshonly = false;
+      $execrefreshonly = false
       Exec['newrelic-install'] -> Package['newrelic-php5']
       if ($php_service) {
         Package['newrelic-php5'] ~> Service[$php_service]
