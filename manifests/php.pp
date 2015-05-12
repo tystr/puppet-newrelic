@@ -75,6 +75,7 @@ class newrelic::php (
           environment => $env,
           command     => "newrelic-install ${install_option}",
           path        => ['/bin', '/usr/bin'],
+          onlyif      => 'test -d /usr/lib/newrelic-php5/agent/x64'
           refreshonly => false,
       }
     }
@@ -89,6 +90,7 @@ class newrelic::php (
           environment => $env,
           command     => "newrelic-install ${install_option}",
           path        => ['/bin', '/usr/bin'],
+          require     => Package['newrelic-php5']
           refreshonly => true,
       }
     }
@@ -96,6 +98,7 @@ class newrelic::php (
     package { 'newrelic-php5':
         ensure  => $ensure,
         require => Class['newrelic::repo'],
+
     }
 
 
