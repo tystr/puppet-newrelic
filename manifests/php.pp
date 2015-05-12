@@ -87,7 +87,7 @@ class newrelic::php (
         environment => $env,
         command     => "newrelic-install ${install_option}",
         path        => ['/bin', '/usr/bin'],
-        refreshonly => true
+        refreshonly => $execrefreshonly,
     }
 
 }
