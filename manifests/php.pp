@@ -14,14 +14,12 @@ class newrelic::php (
     include newrelic::repo
 
     if ($ensure == absent) {
-      Exec['newrelic-install'] -> Package['newrelic-php5']
-
       if ($php_service) {
         Package['newrelic-php5'] ~> Service[$php_service]
       }
     }
     else {
-      Package['newrelic-php5'] -> Exec['newrelic-install']
+      Package['newrelic-php5'] ~> Exec['newrelic-install']
 
       if ($php_service) {
         Exec['newrelic-install'] ~> Service[$php_service]
@@ -88,7 +86,4 @@ class newrelic::php (
         refreshonly => true
     }
 
-    if ($php_service != undef) {
-        Exec['newrelic-install'] ~> Service[$php_service]
-    }
 }
