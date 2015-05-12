@@ -13,29 +13,6 @@ class newrelic::php (
 ) inherits newrelic::php::params {
     include newrelic::repo
 
-
-
-    if ($ensure == absent) {
-      $execrefreshonly = false
-      Exec['newrelic-install'] -> Package['newrelic-php5']
-      if ($php_service) {
-        Package['newrelic-php5'] ~> Service[$php_service]
-      }
-    }
-    else {
-      $execrefreshonly = true
-      Package['newrelic-php5'] ~> Exec['newrelic-install']
-
-      if ($php_service) {
-        Exec['newrelic-install'] ~> Service[$php_service]
-      }
-    }
-
-    package { 'newrelic-php5':
-        ensure  => $ensure,
-        require => Class['newrelic::repo'],
-    }
-
     $nr_install_noksh = $install_noksh ? {
       undef   => nil,
       default => "NR_INSTALL_NOKSH=${install_noksh}"
@@ -84,11 +61,43 @@ class newrelic::php (
     $env = delete($env_temp, nil)
 
     $install_option = $ensure ? { absent => 'purge', default => 'install' }
-    exec { 'newrelic-install':
-        environment => $env,
-        command     => "newrelic-install ${install_option}",
-        path        => ['/bin', '/usr/bin'],
-        refreshonly => $execrefreshonly,
+
+
+
+    if ($ensure == absent) {
+      Exec['newrelic-install'] -> Package['newrelic-php5']
+
+      if ($php_service) {
+        Package['newrelic-php5'] ~> Service[$php_service]
+      }
+
+      exec { 'newrelic-install':
+          environment => $env,
+          command     => "newrelic-install ${install_option}",
+          path        => ['/bin', '/usr/bin'],
+          refreshonly => false,
+      }
     }
+    else {
+      Package['newrelic-php5'] ~> Exec['newrelic-install']
+
+      if ($php_service) {
+        Exec['newrelic-install'] ~> Service[$php_service]
+      }
+
+      exec { 'newrelic-install':
+          environment => $env,
+          command     => "newrelic-install ${install_option}",
+          path        => ['/bin', '/usr/bin'],
+          refreshonly => true,
+      }
+    }
+
+    package { 'newrelic-php5':
+        ensure  => $ensure,
+        require => Class['newrelic::repo'],
+    }
+
+
 
 }
