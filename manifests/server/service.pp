@@ -1,5 +1,8 @@
 class newrelic::server::service {
-    service { 'newrelic-sysmond':
-        ensure => running
+
+    if $newrelic::service_present != 'absent' {
+        service { 'newrelic-sysmond':
+            ensure => running
+        }
     }
 }
