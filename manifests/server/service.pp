@@ -1,6 +1,6 @@
-class newrelic::server::service {
+class newrelic::server::service ($ensure) {
 
-    if $::newrelic::ensure != 'absent' {
+    if $::newrelic::server::service::ensure != 'absent' {
         service { 'newrelic-sysmond':
             ensure => running
         }

@@ -10,7 +10,7 @@ class newrelic::server::install (
         notify => Exec['nrsysmond-config-license']
     }
     
-    if $::newrelic::ensure != 'absent' {
+    if $::newrelic::server::install::ensure != 'absent' {
         exec { 'nrsysmond-config-license':
             command => "nrsysmond-config --set license_key=${license_key}",
             path => ['/bin', '/usr/bin', '/usr/sbin'],
