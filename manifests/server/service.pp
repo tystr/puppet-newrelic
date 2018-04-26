@@ -1,6 +1,6 @@
 class newrelic::server::service {
 
-    if $newrelic::service_present != 'absent' {
+    if $newrelic::nrsrvmon_installed != 'absent' {
         service { 'newrelic-sysmond':
             ensure => running
         }
