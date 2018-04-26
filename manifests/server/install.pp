@@ -5,12 +5,12 @@ class newrelic::server::install (
     include newrelic::repo
 
     package {'newrelic-sysmond':
-        ensure => $newrelic::nrsrvmon_installed,
+        ensure => $::newrelic::nrsrvmon_installed,
         require => Class['newrelic::repo'],
         notify => Exec['nrsysmond-config-license']
     }
     
-    if $newrelic::nrsrvmon_installed != 'absent' {
+    if $::newrelic::nrsrvmon_installed != 'absent' {
         exec { 'nrsysmond-config-license':
             command => "nrsysmond-config --set license_key=${license_key}",
             path => ['/bin', '/usr/bin', '/usr/sbin'],
