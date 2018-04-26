@@ -5,7 +5,7 @@ class newrelic::server::install (
     include newrelic::repo
 
     package {'newrelic-sysmond':
-        ensure => $::newrelic::ensure,
+        ensure => $::newrelic::server::install::ensure,
         require => Class['newrelic::repo'],
         notify => Exec['nrsysmond-config-license']
     }
