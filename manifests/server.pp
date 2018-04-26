@@ -1,10 +1,10 @@
 class newrelic::server (
     $license_key,
-    $nrsrvmon_installed = 'present'
+    $ensure = 'present'
     ) {
     class{ 'newrelic::server::install':
-        license_key     => $license_key
-        service_present => $nrsrvmon_installed
+        license_key => $license_key
+        ensure      => $ensure
     } ->
     class { 'newrelic::server::service': } ->
     Class['newrelic::server']
