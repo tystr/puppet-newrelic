@@ -10,7 +10,9 @@ class newrelic::server (
         ensure      => $ensure
     } ->
     class { 'newrelic::server::configure':
+        license_key => $license_key,
         ensure      => $ensure
+
     } ->
     Class['newrelic::server']
 }
