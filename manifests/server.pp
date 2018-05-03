@@ -3,7 +3,6 @@ class newrelic::server (
     $ensure = 'present'
     ) {
     class{ 'newrelic::server::install':
-        license_key => $license_key,
         ensure      => $ensure
     } ->
     class { 'newrelic::server::configure':
