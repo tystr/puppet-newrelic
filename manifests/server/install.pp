@@ -16,7 +16,6 @@ class newrelic::server::install (
             path => ['/bin', '/usr/bin', '/usr/sbin'],
             notify => Service['newrelic-sysmond'],
             refreshonly => true
+            Package['newrelic-sysmond'] -> Exec['nrsysmond-config-license']
         }
     }
-        Package['newrelic-sysmond'] -> Exec['nrsysmond-config-license']
-}
