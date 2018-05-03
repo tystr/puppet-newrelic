@@ -4,5 +4,6 @@ class newrelic::server::install ($ensure) {
     package {'newrelic-sysmond':
         ensure  => $::newrelic::server::install::ensure,
         require => Class['newrelic::repo']
+        notify  => Configure['nrsysmond-config-license']
     }
 }
