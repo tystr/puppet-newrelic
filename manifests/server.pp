@@ -5,11 +5,6 @@ class newrelic::server (
     class{ 'newrelic::server::install':
         ensure      => $ensure
     } ->
-    class { 'newrelic::server::configure':
-        license_key => $license_key,
-        ensure      => $ensure
-
-    } ->
     class { 'newrelic::server::service':
         ensure      => $ensure
     } ->
