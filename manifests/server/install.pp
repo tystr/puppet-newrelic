@@ -19,3 +19,4 @@ class newrelic::server::install (
         }
         Package['newrelic-sysmond'] -> Exec['nrsysmond-config-license']
     }
+}
