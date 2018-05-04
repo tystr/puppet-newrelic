@@ -6,7 +6,7 @@ class newrelic::server::install (
 
     package {'newrelic-sysmond':
         ensure  => $::newrelic::server::install::ensure,
-        require => Class['newrelic::repo']
+        require => Class['newrelic::repo'],
         notify  => Exec['nrsysmond-config-license']    }
 
     if $::newrelic::server::install::ensure != 'absent' {
